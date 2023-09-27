@@ -83,14 +83,15 @@ class LinkedList:
         new_node = self.get(index)
         if(isinstance(new_node, Node)):
             new_node.data = data
-            
+
     def size(self):
         temp_node = self.head
         count = 0
+
         while temp_node != None:
             temp_node = temp_node.next
             count+=1
-        return count 
+        print( f" Size = {count}" ) 
     
     def print_list(self):
         temp = self.head
@@ -102,7 +103,7 @@ class LinkedList:
     def info(self):
         print('List elements : ', end='')
         self.print_list()
-        print(f'\nSize {self.size}')
+        print(f'\nSize {self.size()}')
 
     def clear(self):
         self.head=None

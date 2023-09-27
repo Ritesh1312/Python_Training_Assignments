@@ -9,8 +9,6 @@ def main():
     list.append(3)
     list.append(78)
 
-    list.info()
-
     print(f'Element present at index {1}: {list.get(1)}')
     print(f'Value of element present at index {1}: {list.get_value(1)}')
 
@@ -25,12 +23,15 @@ def main():
     
     print()
 
-    print('Removing elements from list')
+    print('Removing elements from list at particular indexes')
     list.remove_at_index(0)
     list.remove_at_index(3)
     list.size()
     
 
+    list.info()
+
+    list.clear()
     list.info()
 
 if(__name__=='__main__'):
