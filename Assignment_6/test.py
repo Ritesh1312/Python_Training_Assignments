@@ -9,8 +9,7 @@ def main():
     list.append(3)
     list.append(78)
 
-    print(f'Element present at index {1}: {list.get(1)}')
-    print(f'Value of element present at index {1}: {list.get_value(1)}')
+    print(f'Value of element present at index {3}: {list.get_value(3)}')
 
     print("Inserting at specific indexes")
 
