@@ -28,6 +28,8 @@ def main():
     print('Removing elements from list')
     list.remove_at_index(0)
     list.remove_at_index(3)
+    list.size()
+    
 
     list.info()
 
