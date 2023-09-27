@@ -52,24 +52,23 @@ def print_month_calendar(mm,yy):
                 i+=1
         print()
 
-print_month_calendar(9,2023)
+# print_month_calendar(9,2023)
 def print_month_calendar_vertical(mm,yy):
     start_day = extra_days(1,mm,yy) 
-    print(start_day) 
     month_days = days_in_month(mm,yy) 
     i = 0 
     while i <7: 
         print(get_week_day_name(i)[0:3], end='\t') 
-        date = 7 + i - start_day + 1 
-        if(i>=start_day ): 
+        date = 7 + i - start_day + 1
+        if(i>=start_day ):
             date = i - start_day + 1 
-        else: 
+        else:
             print("\t", end='') 
-            while date<=month_days: 
-                print(date, end="\t") 
-                date += 7 
-                print() 
-                i+=1
+        while date<=month_days: 
+            print(date, end="\t") 
+            date += 7 
+        print() 
+        i+=1
 
 
-print_month_calendar_vertical(9,2023)
+print_month_calendar_vertical(10,2023)
