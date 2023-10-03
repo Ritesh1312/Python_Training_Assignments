@@ -16,6 +16,10 @@ def main():
     list.find_primes()
     print()
     list.find_evens()
+    print()
+    list.clear()
+    print()
+    list.info()
 
 if(__name__=='__main__'):
     main()

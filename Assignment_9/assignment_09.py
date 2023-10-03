@@ -17,6 +17,13 @@ class LinkedList:
             while temp_node.next != None:
                 temp_node = temp_node.next
             temp_node.next = new_node
+        
+    def clear(self):
+        temp = self.head
+        while temp!= None:
+            self.remove_at_index(0)
+            temp = temp.next
+
 
     def insert_at_position(self, data, index):
         new_node = Node(data)
