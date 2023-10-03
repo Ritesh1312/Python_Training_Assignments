@@ -7,7 +7,7 @@ class Node:
 class LinkedList:
     def __init__(self):
         self.head = None
-    
+
     def append(self, data):
         new_node = Node(data)
         if self.head is None:
@@ -18,13 +18,6 @@ class LinkedList:
                 temp_node = temp_node.next
             temp_node.next = new_node
         
-    def clear(self):
-        temp = self.head
-        while temp!= None:
-            self.remove_at_index(0)
-            temp = temp.next
-
-
     def insert_at_position(self, data, index):
         new_node = Node(data)
         current_node = self.head
@@ -113,10 +106,13 @@ class LinkedList:
         print(f'\nSize {self.size()}')
 
     def clear(self):
-        self.head=None
+        temp = self.head
+        while temp!= None:
+            self.remove_at_index(0)
+            temp = temp.next
 
     def check_prime(self,num):
-        if num <= 1:
+        if num < 2:
             return False
         for i in range(2, num//2):
             if num % i == 0:
@@ -125,7 +121,7 @@ class LinkedList:
 
     def find_primes(self):
         temp = self.head
-        while temp != None:
+        while temp:
             if self.check_prime(temp.data):
                 print(temp.data)
             temp = temp.next
@@ -137,7 +133,30 @@ class LinkedList:
                 print(temp.data)
             temp = temp.next
 
+    def count(self, data):
+        temp = self.head
+        count = 0
+        while temp != None:
+            if(temp.data == data):
+                count += 1
+            temp = temp.next
+        return count
+
+    def __str__(self):
+        output = '('
+        temp = self.head
+        while temp != None:
+            output += str(temp.data) + ','
+            temp = temp.next
+        output +=')'
+        return output
+
+    def __contains__(self, data):
+        temp = self.head
+        while temp != None:
+            if temp.data == data:
+                return True
+            temp = temp.next
+        return False
     
-
-
 

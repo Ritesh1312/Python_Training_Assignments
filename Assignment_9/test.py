@@ -1,5 +1,7 @@
 from assignment_09 import LinkedList
 
+
+
 def main():
     list = LinkedList()
 
@@ -13,13 +15,13 @@ def main():
     list.append(3)
     list.append(79)
     
+    list.info()
     list.find_primes()
     print()
     list.find_evens()
     print()
-    list.clear()
-    print()
-    list.info()
+    print(list.count(3))
+    print(79 in list)
 
 if(__name__=='__main__'):
     main()

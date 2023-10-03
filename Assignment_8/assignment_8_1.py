@@ -113,7 +113,11 @@ class LinkedList:
                 temp._next = None
                 temp._previous = None
 
-
+    def clear(self):
+        temp = self._first
+        while temp!= None:
+            self.remove(0)
+            temp = temp.next
 
 l1 = LinkedList()
 
