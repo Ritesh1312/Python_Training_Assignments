@@ -17,6 +17,7 @@ class LinkedList:
                 n=n._next
             n._next=Node(value, previous=n)
 
+
     def info(self):
         if self._first==None: 
             return "LinkedList(empty)"
