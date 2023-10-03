@@ -174,7 +174,6 @@ class ATM:
         if account :
             if(self.__Bank.authenticate(account, password)):
                 return account
-
             raise Exception('Invalid password')
 
         raise Exception('Account does not exist')
@@ -188,6 +187,8 @@ class ATM:
         account = self.__get_user_after_auth()  
         amount = int(input('Enter Amount to withdraw'))
         account.withdraw(amount)
+        print(f' Amount withdrawn = {amount}')
+        
 
     
 
@@ -203,20 +204,20 @@ account4 = sbi.create_account('Ritesh', '@Ritesh1223', 50000)
 account5 = sbi.create_account('Amitabh', '@ami1223', 55000)
 account6 = sbi.create_account('Pradumn', '@Rprad1223', 60000)
 
-axis.info_all__accounts()
-print()
-sbi.info_all__accounts()
+# axis.info_all__accounts()
+# print()
+# sbi.info_all__accounts()
 
 
 # axis.transfer_money(account1, account2, 100000)
 
 axis.credit_interest_all()
 sbi.credit_interest_all()
-print()
-axis.info_all__accounts()
-print()
-sbi.info_all__accounts()
-print()
+# print()
+# axis.info_all__accounts()
+# print()
+# sbi.info_all__accounts()
+# print()
 sbi_atm = ATM(sbi)
-sbi_atm.check_balance()
+
 sbi_atm.cash_money()
