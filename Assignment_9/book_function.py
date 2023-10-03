@@ -10,7 +10,6 @@ class Book:
     def __repr__(self) :
         return f'Book {self.id}--{self.title}'
     
-
 class Books:
     def __init__(self):
         self._books = []
