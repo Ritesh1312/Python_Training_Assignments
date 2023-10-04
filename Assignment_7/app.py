@@ -8,7 +8,7 @@ def main():
     sbi.create_account('Mohak' ,'pass', 50000)
     sbi.create_account('Pradumn' ,'pass', 50000)
     sbi.create_account('Amitabh' ,'pass', 50000)
-    sbi.create_account('Aditya1' ,'pass', 50000)
+    sbi.create_account('Aditya' ,'pass', 50000)
     sbi.info_all__accounts()
     while True:
         if atm.start():

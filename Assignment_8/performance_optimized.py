@@ -1,6 +1,5 @@
 import time
 
-
 class Node:
     def __init__(self, value,next=None, previous=None):
         self._value=value
@@ -14,11 +13,11 @@ class LinkedList:
     def append(self, value):
         if self._first==None: # list is empty
             self._first=Node(value)
+            self._tail = self._first
         else: # add to the end of a non-empty list
-            n=self._first
-            while n._next:
-                n=n._next
-            n._next=Node(value, previous=n)
+            new_node = Node(value, previous=self._tail)
+            self._tail._next = new_node
+            self._tail = new_node
 
 
     def info(self):
@@ -123,19 +122,29 @@ class LinkedList:
             self.remove(0)
             temp = temp.next
 
-l1 = LinkedList()
+    def get_node(self, index):
+        if index < 0 or index >= self.size():
+            return None
+        if index <= self.size() //2:
+            temp = self._first
+            for i in range(index):
+                temp  = temp._next
+        else:
+            temp = self._tail
+            for i in range(self.size()-1, index - 1):
+                temp  = temp._previous
+        return temp
 
-# print(l1.info())
+l1 = LinkedList()
 start = time.time()
 # print(l1.info())
 
-for x in range(10000):
+for x in range(100000):
     l1.append(x)
 
 end = time.time()
 
 print(end - start)
-
 # print('size', l1.size())
 
 # print(l1.info())
