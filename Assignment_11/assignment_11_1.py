@@ -19,8 +19,6 @@ def find_primes(min,max):
     for x in range(min,max):
         if is_prime(x):
             primes.append(x)
-    end = time.time()
-    time_taken = end - start
     return primes
 
 def is_prime(n):
