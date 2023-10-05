@@ -15,7 +15,6 @@ def decorator(func):
 @decorator
 def find_primes(min,max):
     primes=[]
-    start = time.time()
     for x in range(min,max):
         if is_prime(x):
             primes.append(x)
