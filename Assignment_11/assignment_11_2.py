@@ -26,7 +26,7 @@ def is_prime(n):
     return True
 
 with Timer() as t:
-    prime = find_primes(2,500000)
+    prime = find_primes(2,50000)
     print(f'Total Primes are - {len(prime)}')
 
 print(f'Total Time Taken - {t.time_taken}')
