@@ -9,11 +9,13 @@ def get_all_authors(cursor):
         print(result)
 
 def remove_author(cursor,id):
-    cursor.execute('DELETE from Authors where authorid=?',id)
+    query = 'DELETE from Authors where authorid=?'
+    cursor.execute(query,id)
     print(f'{id} Deleted')
 
 def add_author(cursor,id,name,bio):
-    cursor.execute('insert into Authors (authorid,name,bio) VALUES (?,?,?)',id,name,bio)
+    query = 'insert into Authors (authorid,name,bio) VALUES (?,?,?)'
+    cursor.execute(query,id,name,bio)
     print(f'{id} Added')
 
 def author_by_id(cursor,id):

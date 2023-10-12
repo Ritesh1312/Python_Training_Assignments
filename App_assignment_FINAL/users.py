@@ -7,13 +7,15 @@ def get_all_users(cursor):
             print(res)
     
 def add_new_user(cursor,id,name,password):
-    cursor.execute('insert into Users (userid,username,password) values (?,?,?)',id,name,password)
+    query = 'insert into Users (userid,username,password) values (?,?,?)'
+    cursor.execute(query,id,name,password)
 
 def get_user_review(cursor,id):
-    cursor.execute('''SELECT R.userid,B.title, R.rating, R.review_text
+    query = '''SELECT R.userid,B.title, R.rating, R.review_text
                     FROM Reviews R
                     JOIN Books B ON R.bookid = B.bookid
-                    WHERE R.userid = ?;''',id)
+                    WHERE R.userid = ?;'''
+    cursor.execute(query,id)
     results=result_as_dict(cursor)
     for res in results:
             print(res)

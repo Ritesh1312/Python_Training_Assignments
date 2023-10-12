@@ -13,6 +13,7 @@ def get_books_by_id(cursor,id):
             print(res)
 
 def get_books_by_authorid(cursor,a_id):
+    
     cursor.execute(f'select * from Books where authorid={a_id}')
     results=result_as_dict(cursor)
     for res in results:

@@ -52,7 +52,7 @@ def main():
             parts = user_input.split(',')
             command = parts[0]
             arguments = parts[1:]
-            print(command)
+            # print(command)
 
             try:
                 if command.lower() in ["quit", "exit", "bye"]:
