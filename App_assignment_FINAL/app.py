@@ -1,73 +1,50 @@
 import pyodbc as db
-import os
-from utils import result_as_dict
-from users import *
-from authors import *
+import utils
 from books import *
+from authors import *
 from reviews import *
+from users import *
 
-
+command_registry = {
+    "add_authors" :{'func':add_author, 'args':['name', 'bio']},
+    "remove_authors" :{'func':remove_author, 'args':['author_id']},
+    "get_author_by_id" :{'func':author_by_id, 'args':['author_id']},
+    "get_all_authors" :{'func':get_all_authors, 'args':[]},
+    "add_books" :{'func':add_book, 'args':['isbn','title','author_id']},
+    "remove_books" :{'func':remove_book, 'args':['book_id']},
+    "get_all_books" :{'func':get_all_books, 'args':[]},
+    "get_book_by_authorid" :{'func':get_books_by_authorid, 'args':['author_id']},
+    "get_book_reviews" :{'func':get_book_review, 'args':['book_id']},
+    "add_book_review" :{'func':add_book_review, 'args':['book_id','user_id','user_pass','rating','user_text']},
+    "add_new_user" :{'func':add_new_user, 'args':['name','email','password']},
+    "get_all_user" :{'func':get_all_users,'args':[]},
+    "get_user_review" :{'func':get_user_review,'args':['user_id']}
+}
 
 def main():
-    command_functions = {}
-
-    driver='{ODBC Driver 18 for SQL Server}'
-    server=r'localhost\SQLEXPRESS'
-    database='app_db'
-    encrypt='no'
-    trusted_connection='yes'
-
-    connection_string=f'''
-        DRIVER={driver};
-        SERVER={server};
-        DATABASE={database};
-        trusted_connection={trusted_connection};
-        ENCRYPT={encrypt};
-    '''
-
-    with db.connect(connection_string) as connection:
-        print('connection successful')
-    
-        cursor= connection.cursor()
-        command_functions["add_authors"] = add_author
-        command_functions["remove_authors"] = remove_author
-        command_functions["get_author_by_id"] = author_by_id
-        command_functions["get_all_authors"] = get_all_authors
-        command_functions["update_authors"] = update_author
-        command_functions["get_author_reviews"] = get_author_review
-        command_functions["add_books"] = add_book
-        command_functions["add_book_review"] = add_book_review
-        command_functions["remove_books"] = remove_book
-        command_functions["get_all_books"] = get_all_books
-        command_functions["get_book_by_authorid"] = get_books_by_authorid
-        command_functions["get_book_reviews"] = get_book_review
-        command_functions["add_book_review"] = add_book_review
-        command_functions["get_all_review"] = get_all_reviews
-        command_functions["add_user"] = add_new_user
-        command_functions["get_all_user"] = get_all_users
-        command_functions["get_user_review"] = get_user_review
-
+    with utils.db_connect() as connection:
+        cursor = connection.cursor()
         while True:
             user_input = input("db> ")
-            parts = user_input.split(',')
-            command = parts[0]
-            arguments = parts[1:]
-            # print(command)
-
+            task = user_input.split(' ')
+            command, input_args = task[0].strip(), task[1:]
+            final_args = input_args
             try:
                 if command.lower() in ["quit", "exit", "bye"]:
                     break
-                # print(command)
-                command_functions[command.lower()](cursor,*arguments)
+                task_helper = command_registry[command.lower()]
+
+                if len(input_args) < len(task_helper['args']):
+                    for arg in task_helper['args'][len(input_args):]:
+                        final_args.append(input(f'{arg}?'))
+                result = task_helper['func'](cursor,*final_args)
+                if not result:
+                    utils.print_data(result)
                 
-            except:
+            except Exception as e:
+                print(e)
                 print("Command not recognized.")
 
-            
-        
 
-
-
-
-if __name__=='__main__':
+if __name__ == '__main__':
     main()
